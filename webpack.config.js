@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 
 module.exports = {
@@ -10,7 +11,8 @@ module.exports = {
     filename: "[name].js"
   },
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./dist",
+    historyApiFallback: true
   },
   module: {
     rules: [
@@ -20,6 +22,20 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader"
+        }]
+      },
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.html$/,
@@ -35,6 +51,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
-    })
+    }),
+    new CopyWebpackPlugin([
+      {from: './src/back.mp4', to: './dist'}
+    ], {})
   ]
 };
