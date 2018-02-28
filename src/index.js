@@ -1,27 +1,26 @@
-import App from "./containers/App";
 import React from "react"
 import ReactDOM from "react-dom"
+import App from "./smart/App"
+import {Router} from "react-router-dom"
+import history from "./history"
 import reducers from "./reducers"
 import {Provider} from "react-redux"
+import ReduxThunk from "redux-thunk";
 import {createStore, applyMiddleware} from "redux"
 import "./scss/index.scss"
 import "normalize.css/normalize.css"
-import {Router} from 'react-router-dom'
-import history from "./history"
-
 
 const store = createStore(
     reducers,
-    {},
-    applyMiddleware()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(ReduxThunk)
 );
 
 ReactDOM.render(
-    <Router history={history}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Router history={history}>
         <App/>
-      </Provider>
-    </Router>,
-    document.getElementById('root')
+      </Router>
+    </Provider>,
+    document.getElementById("root")
 );
-

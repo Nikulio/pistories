@@ -1,39 +1,39 @@
-a {
-  text-decoration: none;
+@import "colors";
+
+body {
+  background: $light_cyan;
+}
+.wrapper {
+  width: 100%;
+  padding: 0 20px;
+  max-width: 1200px;
+  display: flex;
+  margin: 0 auto;
 }
 
-html {
-  overflow-x: hidden;
+* {
+  font: 14px "Roboto";
 }
 
-.login {
-  min-width: 100vw;
-  min-height: 100vh;
-  position: relative;
-  display: block;
-  button {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 15;
-    transform: translate(-50%, -50%);
+input {
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 3px;
+  transition: .3s all;
+  &:focus {
+    box-shadow: inset 0 0 5px 2px $electric_blue;
   }
 }
 
-#myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  z-index: 5;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 10;
-  background: rgba(0,0,0, 0.7);
+.btn {
+  background: transparent;
+  color: $white;
+  display: flex;
+  outline: none;
+  border: 2px solid $white;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 10px;
 }

@@ -1,12 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
-  entry: ["./src/index.js"],
-  output: {
+  entry: ["babel-polyfill", "./src/index.js"],
+  output: { 
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js"
   },
@@ -49,11 +49,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
       filename: "./index.html"
     }),
     new CopyWebpackPlugin([
-      {from: './src/back.mp4', to: './dist'}
-    ], {})
+      {from: './src/img/*', to: './img'}
+    ], {}
+    )
   ]
 };
