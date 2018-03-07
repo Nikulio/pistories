@@ -1,26 +1,31 @@
-import React, {Component} from 'react';
-import {Switch, Route} from "react-router-dom"
-import {fetchUsers} from "../ac"
-import Header from "./Header/index"
-import Dashboard from "./Dashboard/index"
-import {connect} from "react-redux"
-
+import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+import { fetchStories } from "../ac";
+import Header from "./Header/index";
+import Dashboard from "./Dashboard/index";
+import { connect } from "react-redux";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchUsers()
-  }
-  render() {
-    return (
-        <div className="app">
-          <Header />
-          {/*<Dashboard />*/}
-        </div>
-    );
-  }
-}
-const mapDispatchToProps = {
-    fetchUsers
+	componentWillMount() {
+		this.props.fetchStories();
+	}
+	render() {
+		return (
+			<div className="app">
+				<Header />
+				<Dashboard stories={this.props.stories} />
+			</div>
+		);
+	}
 }
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = {
+	fetchStories
+};
+
+export default connect(
+	state => ({
+		stories: state.stories
+	}),
+	mapDispatchToProps
+)(App);

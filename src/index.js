@@ -8,6 +8,7 @@ import {Provider} from "react-redux"
 import ReduxThunk from "redux-thunk";
 import {createStore, applyMiddleware} from "redux"
 import "./scss/index.scss"
+import "./scss/colors.scss"
 import "normalize.css/normalize.css"
 
 const store = createStore(

@@ -1,39 +1,171 @@
 @import "colors";
 
 body {
-  background: $light_cyan;
+	background: $white;
 }
 .wrapper {
-  width: 100%;
-  padding: 0 20px;
-  max-width: 1200px;
-  display: flex;
-  margin: 0 auto;
+	width: 100%;
+	padding: 0 20px;
+	max-width: 1200px;
+	display: flex;
+	margin: 0 auto;
 }
 
 * {
-  font: 14px "Roboto";
+	font: 14px "Roboto";
 }
 
-input {
-  border: none;
-  outline: none;
-  height: 30px;
-  padding: 0 10px;
-  border-radius: 3px;
-  transition: .3s all;
-  &:focus {
-    box-shadow: inset 0 0 5px 2px $electric_blue;
-  }
+.title {
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.input-wrap {
+	position: relative;
+	width: 100%;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.submit-wrap {
+	justify-content: center;
+}
+input,
+textarea {
+	border: none;
+	border-bottom: 1px solid $dark;
+	outline: none;
+	height: 30px;
+	width: 100%;
+	padding: 0 10px;
+	border-radius: 0;
+	transition: 0.3s all;
+	position: relative;
+	color: $dark;
+	&:active,
+	&:focus {
+		border-color: $dark;
+	}
+}
+
+textarea {
+	height: 200px;
 }
 
 .btn {
-  background: transparent;
-  color: $white;
-  display: flex;
-  outline: none;
-  border: 2px solid $white;
-  border-radius: 10px;
-  text-decoration: none;
-  padding: 10px;
+	background: transparent;
+	color: $white;
+	display: inline-block;
+	outline: none;
+	border: 2px solid $white;
+	border-radius: 10px;
+	text-decoration: none;
+	padding: 15px;
+	transition: 0.6s all;
+	&.btn-dark {
+		background: $dark;
+		&:hover {
+			border: 2px solid $dark;
+			color: $dark;
+			background: $white;
+		}
+	}
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+html,
+.root {
+	font-size: 16px;
+	line-height: 22px;
+}
+body,
+.article {
+	font-size: 16px;
+	line-height: 22px;
+	margin: auto;
+}
+h1,
+.h1 {
+	font-size: 68px;
+	line-height: 88px;
+	margin-top: 22px;
+	margin-bottom: 44px;
+}
+h2,
+.h2 {
+	font-size: 42px;
+	line-height: 44px;
+	margin-top: 22px;
+	margin-bottom: 22px;
+}
+h3,
+.h3 {
+	font-size: 26px;
+	line-height: 44px;
+	margin-top: 22px;
+	margin-bottom: 0px;
+}
+h4,
+.h4 {
+	font-size: 16px;
+	line-height: 22px;
+	margin-top: 22px;
+	margin-bottom: 0px;
+}
+h5,
+.h5 {
+	font-size: 16px;
+	line-height: 22px;
+	margin-top: 22px;
+	margin-bottom: 0px;
+}
+p,
+ul,
+ol,
+pre,
+table,
+blockquote {
+	margin-top: 0px;
+	margin-bottom: 22px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* Let's make sure all's aligned */
+hr,
+.hr {
+	border: 1px solid;
+	margin: -1px 0;
+}
+a,
+b,
+i,
+strong,
+em,
+small,
+code {
+	line-height: 0;
+}
+sub,
+sup {
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
 }
