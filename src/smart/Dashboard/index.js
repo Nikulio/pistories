@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import NewStory from "../NewStory";
 import "./index.scss";
 import MaterialIcon from "material-icons-react";
+import history from "../../history";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
 	state = {
@@ -14,21 +16,46 @@ class Dashboard extends Component {
 		});
 	};
 
+	clickHandle = e => {
+		e.preventDefault();
+		const { stories } = this.props;
+		let targetElement = e.currentTarget.dataset.id;
+		console.log(stories);
+		if (stories) {
+			Object.keys(stories).map(element => {
+				if (targetElement === element) {
+					console.log("win");
+					history.push({
+						pathname: "/story",
+						state: {
+							title: stories[element].title,
+							labels: stories[element].labels,
+							text: stories[element].text
+						}
+					});
+				}
+			});
+		}
+	};
+
 	render() {
 		const { addNewOpen } = this.state;
-		const { stories } = this.props;
+		const { stories } = this.props; // ТУТ ВИДИТ
 		const dashClass = stories ? "dashboard not-empty" : "dashboard empty";
 		let elements = stories ? (
 			Object.keys(stories).map(key => {
 				let imgUrl = stories[key].img ? stories[key].img : "img/no_image.jpg";
 				return (
-					<a key={key} href="/" className="stories__element">
-						{/*<img src='img/no_image.jpg' alt=""/>*/}
+					<a
+						key={key}
+						href="/"
+						onClick={this.clickHandle}
+						data-id={key}
+						className="stories__element">
 						<img className="stories__element-image" src={imgUrl} alt="image" />
 						<div className="overlay" />
 						<h2 className="stories__element-title">{stories[key].title}</h2>
 						<div className="stories__element-labels">{stories[key].labels}</div>
-						{/*<div>{stories[key].text}</div>*/}
 					</a>
 				);
 			})
@@ -65,4 +92,5 @@ class Dashboard extends Component {
 	}
 }
 
+const mapDispatchToProps = {};
 export default Dashboard;
