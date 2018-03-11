@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
-import { fetchStories } from "../ac";
+import { fetchStories, fetchImages } from "../ac";
 import Header from "./Header/index";
 import Dashboard from "./Dashboard/index";
 import Story from "./Story/index";
@@ -9,9 +9,15 @@ import { connect } from "react-redux";
 class App extends Component {
 	componentWillMount() {
 		this.props.fetchStories();
-	}
+    this.props.fetchImages();
+    
+  }
 	render() {
-		let { stories } = this.props;
+		let { stories, images } = this.props;
+    // let arr = [];
+    // let res = Object.keys(stories).map(elem => {
+    //   arr.push(stories[elem].title);
+    // });
 		const routes = stories ? (
 			Object.keys(stories).map(element => {
 				let url = stories[element].title;
@@ -39,7 +45,7 @@ class App extends Component {
 					render={() => (
 						<div className="app">
 							<Header />
-							<Dashboard stories={this.props.stories} />
+							<Dashboard images={images} stories={stories} />
 						</div>
 					)}
 				/>
@@ -50,13 +56,15 @@ class App extends Component {
 }
 
 const mapDispatchToProps = {
-	fetchStories
+	fetchStories,
+	fetchImages
 };
 
 export default withRouter(
 	connect(
 		state => ({
-			stories: state.stories
+			stories: state.stories,
+			images: state.images
 		}),
 		mapDispatchToProps
 	)(App)

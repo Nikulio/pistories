@@ -40,14 +40,16 @@
     "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --hot --quiet",
     "build": "webpack"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
     "cssnano": "^3.10.0",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
-    "sugarss": "^1.0.1"
+    "sugarss": "^1.0.1",
+    "webpack-dashboard": "^1.1.1"
   }
 }

@@ -28,24 +28,11 @@ class ImageUploader extends Component {
 	handleUploadSuccess = filename => {
 		this.props.onImageLoad(filename);
 		this.setState({ avatar: filename, progress: 100, isUploading: false });
-		// fire
-		//     .storage()
-		//     .ref("img")
-		//     .child(filename)
-		//     .getDownloadURL()
-		//     .then(url => this.setState({avatarURL: url}));
 	};
 
 	render() {
 		return (
 			<div className="uploader input-wrap">
-				{/*<label>Username:</label>*/}
-				{/*<input*/}
-				{/*type="text"*/}
-				{/*value={this.state.username}*/}
-				{/*name="username"*/}
-				{/*onChange={this.handleChangeUsername}*/}
-				{/*/>*/}
 				<label>Your image:</label>
 				{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
 				{this.state.avatarURL && <img src={this.state.avatarURL} />}

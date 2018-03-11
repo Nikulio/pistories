@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NewStory from "../NewStory";
 import "./index.scss";
+import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
 import history from "../../history";
 import { connect } from "react-redux";
@@ -20,11 +21,10 @@ class Dashboard extends Component {
 		e.preventDefault();
 		const { stories } = this.props;
 		let targetElement = e.currentTarget.dataset.id;
-		console.log(stories);
 		if (stories) {
 			Object.keys(stories).map(element => {
 				if (targetElement === element) {
-					console.log("win");
+					this.props.loadImage(stories[element].title);
 					history.push({
 						pathname: "/story",
 						state: {
@@ -40,11 +40,12 @@ class Dashboard extends Component {
 
 	render() {
 		const { addNewOpen } = this.state;
-		const { stories } = this.props; // ТУТ ВИДИТ
+		const { stories, images } = this.props;
 		const dashClass = stories ? "dashboard not-empty" : "dashboard empty";
 		let elements = stories ? (
 			Object.keys(stories).map(key => {
-				let imgUrl = stories[key].img ? stories[key].img : "img/no_image.jpg";
+			  console.log('---', images);
+				let imgUrl = "img/no_image.jpg";
 				return (
 					<a
 						key={key}
@@ -85,12 +86,12 @@ class Dashboard extends Component {
 		);
 		return (
 			<div className={dashClass}>
-				<NewStory isOpen={addNewOpen} />
+				<NewStory handleOpen={this.handleCreateNew} isOpen={addNewOpen} />
 				{content}
 			</div>
 		);
 	}
 }
 
-const mapDispatchToProps = {};
-export default Dashboard;
+const mapDispatchToProps = { loadImage };
+export default connect(null, mapDispatchToProps)(Dashboard);

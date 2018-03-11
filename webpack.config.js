@@ -2,8 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpackDashboard = require('webpack-dashboard/plugin');
+const friendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-const BUILD_DIR = path.resolve(__dirname, "./dist");
 
 module.exports = {
 	context: path.join(__dirname, "/"),
@@ -11,12 +12,9 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js"
-		// publicPath: "./public/" // название директории
 	},
 	devServer: {
 		contentBase: "./public",
-		// outputPath: BUILD_DIR,
-		// hot: true,
 		historyApiFallback: true
 	},
 	module: {
@@ -65,6 +63,8 @@ module.exports = {
 			template: "./public/index.html",
 			filename: "./index.html"
 		}),
-		new CopyWebpackPlugin([{ from: "./public/img/*", to: "./img" }], {})
-	]
+		new CopyWebpackPlugin([{ from: "./public/img/*", to: "./img" }], {}),
+    new webpackDashboard(),
+    new friendlyErrorsPlugin(),
+  ]
 };
