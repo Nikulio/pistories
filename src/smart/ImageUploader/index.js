@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { loadImage } from "../../ac";
 import fire from "../../firebase";
 import "./index.scss";
 import FileUploader from "react-firebase-file-uploader";
@@ -26,7 +28,7 @@ class ImageUploader extends Component {
 	};
 
 	handleUploadSuccess = filename => {
-		this.props.onImageLoad(filename);
+		this.props.loadImage(filename);
 		this.setState({ avatar: filename, progress: 100, isUploading: false });
 	};
 
@@ -51,4 +53,7 @@ class ImageUploader extends Component {
 	}
 }
 
-export default ImageUploader;
+const mapDispatchToProps = {
+	loadImage
+};
+export default connect(null, mapDispatchToProps)(ImageUploader);

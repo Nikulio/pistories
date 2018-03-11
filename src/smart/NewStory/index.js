@@ -12,7 +12,7 @@ class NewStoryForm extends Component {
 	};
 
 	handleUploadSuccess = data => {
-		this.props.propsFunc(data);
+		console.log(data);
 	};
 
 	render() {
@@ -66,22 +66,19 @@ class NewStoryForm extends Component {
 
 class NewStory extends Component {
 	submit = data => {
+	  data.image = this.props.image;
 		this.props.createStory(data);
 		this.props.handleOpen();
 	};
 
-	handleUploadSuccess = () => {};
-
 	render() {
-		let { isOpen } = this.props;
+		let { isOpen, image } = this.props;
+		console.log("targ image", image);
 		const isOpenClass = isOpen ? "new-note unfolded" : "new-note folded";
 		return (
 			<div className={isOpenClass}>
 				<h2 className="title">New PiStory</h2>
-				<NewStoryForm
-					propsFunc={this.handleUploadSuccess}
-					onSubmit={this.submit}
-				/>
+				<NewStoryForm onSubmit={this.submit} />
 			</div>
 		);
 	}
@@ -92,4 +89,6 @@ const mapDispatchToProps = {
 };
 NewStoryForm = reduxForm({ form: "newStoryForm" })(NewStoryForm);
 
-export default connect(null, mapDispatchToProps)(NewStory);
+export default connect(state => ({ image: state.image }), mapDispatchToProps)(
+	NewStory
+);

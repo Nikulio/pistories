@@ -44,8 +44,7 @@ class Dashboard extends Component {
 		const dashClass = stories ? "dashboard not-empty" : "dashboard empty";
 		let elements = stories ? (
 			Object.keys(stories).map(key => {
-			  console.log('---', images);
-				let imgUrl = "img/no_image.jpg";
+				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.jpg";
 				return (
 					<a
 						key={key}

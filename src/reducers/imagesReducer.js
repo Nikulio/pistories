@@ -1,9 +1,8 @@
 import * as actions from "../ac";
 
-export function imageReducer(state = {}, action) {
+export function imagesReducer(state = {}, action) {
 	switch (action.type) {
-		case actions.IMAGE_LOADED:
-			console.log(action.payload);
+		case actions.FETCH_IMAGES:
 			return action.payload;
 		default:
 			return state;
