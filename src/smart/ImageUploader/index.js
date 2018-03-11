@@ -26,7 +26,7 @@ class ImageUploader extends Component {
 		this.setState({ isUploading: false });
 		console.error(error);
 	};
-
+ 
 	handleUploadSuccess = filename => {
 		this.props.loadImage(filename);
 		this.setState({ avatar: filename, progress: 100, isUploading: false });
@@ -36,18 +36,19 @@ class ImageUploader extends Component {
 		return (
 			<div className="uploader input-wrap">
 				<label>Your image:</label>
-				{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-				{this.state.avatarURL && <img src={this.state.avatarURL} />}
 				<FileUploader
 					accept="img/*"
 					name="avatar"
-					filename={file => `${this.props.title}_image`}
+          randomizeFilename
+					// filename={file => `${this.props.title}_image`}
 					storageRef={fire.storage().ref("img")}
 					onUploadStart={this.handleUploadStart}
 					onUploadError={this.handleUploadError}
 					onUploadSuccess={this.handleUploadSuccess}
 					onProgress={this.handleProgress}
 				/>
+        {this.state.isUploading && <div>Progress: {this.state.progress}</div>}
+        {this.state.avatarURL && <img src={this.state.avatarURL} />}
 			</div>
 		);
 	}

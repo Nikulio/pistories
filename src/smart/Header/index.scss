@@ -11,6 +11,15 @@
 		align-items: center;
 		justify-content: center;
 	}
+  .logo {
+    transition: 2s all;
+    a {
+      display: block;
+    }
+    &:hover {
+      transform: rotate(720deg) translateZ(0);
+    }
+  }
 	.header__user {
 		margin-left: auto;
 		display: flex;

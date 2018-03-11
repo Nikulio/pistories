@@ -9,11 +9,11 @@ import { connect } from "react-redux";
 class App extends Component {
 	componentWillMount() {
 		this.props.fetchStories();
-    this.props.fetchImages();
+    // this.props.fetchImages();
     
   }
 	render() {
-		let { stories, images } = this.props;
+		let { stories } = this.props;
     // let arr = [];
     // let res = Object.keys(stories).map(elem => {
     //   arr.push(stories[elem].title);
@@ -45,7 +45,7 @@ class App extends Component {
 					render={() => (
 						<div className="app">
 							<Header />
-							<Dashboard images={images} stories={stories} />
+							<Dashboard stories={stories} />
 						</div>
 					)}
 				/>
@@ -57,7 +57,7 @@ class App extends Component {
 
 const mapDispatchToProps = {
 	fetchStories,
-	fetchImages
+	// fetchImages
 };
 
 export default withRouter(

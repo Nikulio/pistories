@@ -24,11 +24,12 @@ class Dashboard extends Component {
 		if (stories) {
 			Object.keys(stories).map(element => {
 				if (targetElement === element) {
-					this.props.loadImage(stories[element].title);
-					history.push({
+          let imgUrl = stories[element].image ? stories[element].image : "img/no_image.png";
+          history.push({
 						pathname: "/story",
 						state: {
 							title: stories[element].title,
+              image: imgUrl,
 							labels: stories[element].labels,
 							text: stories[element].text
 						}
@@ -40,11 +41,11 @@ class Dashboard extends Component {
 
 	render() {
 		const { addNewOpen } = this.state;
-		const { stories, images } = this.props;
+		const { stories } = this.props;
 		const dashClass = stories ? "dashboard not-empty" : "dashboard empty";
 		let elements = stories ? (
 			Object.keys(stories).map(key => {
-				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.jpg";
+				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
 				return (
 					<a
 						key={key}
