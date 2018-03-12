@@ -9,15 +9,10 @@ import { connect } from "react-redux";
 class App extends Component {
 	componentWillMount() {
 		this.props.fetchStories();
-    // this.props.fetchImages();
-    
-  }
+		// this.props.fetchImages();
+	}
 	render() {
 		let { stories } = this.props;
-    // let arr = [];
-    // let res = Object.keys(stories).map(elem => {
-    //   arr.push(stories[elem].title);
-    // });
 		const routes = stories ? (
 			Object.keys(stories).map(element => {
 				let url = stories[element].title;
@@ -56,7 +51,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = {
-	fetchStories,
+	fetchStories
 	// fetchImages
 };
 

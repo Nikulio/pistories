@@ -8,10 +8,10 @@ import * as actions from "../ac"
 
 export default combineReducers({
 	form: formReducer.plugin({
-    newStoryForm: (state, action) => { // <------ 'account' is name of form given to reduxForm()
+    newStoryForm: (state, action) => {
       switch(action.type) {
         case actions.NEW_NOTE_SUCCESS:
-          return undefined;       // <--- blow away form data
+          return undefined;
         default:
           return state;
       }
@@ -19,6 +19,5 @@ export default combineReducers({
   }),
 	users: usersReducer,
 	stories: storiesReducer,
-	// images: imagesReducer,
 	image: imageReducer
 });

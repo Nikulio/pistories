@@ -9,10 +9,6 @@ export const NEW_NOTE_SUCCESS = "NEW_NOTE_SUCCESS";
 
 export const loadImage = title => async dispatch => {
 	const storage = await fire.storage().ref("img");
-	// const name = `${title
-	// 	.toLowerCase()
-	// 	.split(" ")
-	// 	.join("_")}_image`;
 	console.log(title);
 	storage
 		.child(title)
@@ -33,35 +29,6 @@ export const createStory = data => async dispatch => {
 		.push(data);
 };
 
-// export const fetchImages = data => async dispatch => {
-// 	const images = await fire.storage().ref("img");
-// 	const stories = await fire
-// 		.database()
-// 		.ref("stories")
-// 		.on("value", snap => {
-// 			const data = snap.val();
-// 			let imagesArr = [];
-// 			Object.keys(data).map(elem => {
-// 				let name = `${data[elem].title
-// 					.toLowerCase()
-// 					.split(" ")
-// 					.join("_")}_image`;
-// 				images
-// 					.child(`${name}.jpg`)
-// 					.getDownloadURL()
-// 					.then(url => {
-// 						imagesArr.push(url);
-// 						return dispatch({
-// 							type: FETCH_IMAGES,
-// 							payload: imagesArr
-// 						});
-// 					})
-// 					.catch(error => {
-// 						imagesArr.push("/img/no_image.jpg");
-// 					});
-// 			});
-// 		});
-// };
 export const fetchStories = data => async dispatch => {
 	const stories = await fire
 		.database()

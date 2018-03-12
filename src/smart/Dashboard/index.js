@@ -5,6 +5,7 @@ import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
 import history from "../../history";
 import { connect } from "react-redux";
+import _ from "lodash"
 
 class Dashboard extends Component {
 	state = {
@@ -42,8 +43,10 @@ class Dashboard extends Component {
 	render() {
 		const { addNewOpen } = this.state;
 		const { stories } = this.props;
-		const dashClass = stories ? "dashboard not-empty" : "dashboard empty";
-		let elements = stories ? (
+		const storiesStatus = (!(_.isEmpty(stories)));
+    console.log('---', storiesStatus);
+		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
+		let elements = storiesStatus ? (
 			Object.keys(stories).map(key => {
 				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
 				return (
@@ -61,7 +64,10 @@ class Dashboard extends Component {
 				);
 			})
 		) : (
-			<div>Loading...</div>
+			<div className="stories__element loading">
+        Loading...
+        {/*<MaterialIcon icon="loop" size={48} color="#000" />*/}
+      </div>
 		);
 		const content = stories ? (
 			<div className="stories">
