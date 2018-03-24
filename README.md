@@ -4,7 +4,7 @@
 
 ### Demo
 
-![demo](https://s1.gifyu.com/images/democ8df84cf97e0a3c3.gif)
+![demo](https://imgur.com/qJT1MzR.gif)
 
 #### You can not try it now
 
