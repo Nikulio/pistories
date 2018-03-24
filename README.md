@@ -2,7 +2,9 @@
 
 ## React.js + Redux.js
 
-### Demo soon
+### Demo
+
+![demo](https://s1.gifyu.com/images/democ8df84cf97e0a3c3.gif)
 
 #### You can not try it now
 
