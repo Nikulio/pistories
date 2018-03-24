@@ -1,55 +1,40 @@
 {
-	"name": "pistories",
+	"name": "aviasales",
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
-	"dependencies": {
+	"devDependencies": {
 		"axios": "^0.18.0",
+		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
-		"babel-loader": "^7.1.2",
-		"babel-polyfill": "^6.26.0",
+		"babel-loader": "^7.1.4",
+		"babel-plugin-transform-class-properties": "^6.24.1",
 		"babel-preset-env": "^1.6.1",
+		"babel-preset-flow": "^6.23.0",
 		"babel-preset-react": "^6.24.1",
-		"babel-preset-stage-0": "^6.24.1",
-		"copy-webpack-plugin": "^4.4.1",
-		"css-loader": "^0.28.9",
-		"file-loader": "^1.1.11",
-		"firebase": "^4.10.1",
-		"history": "^4.7.2",
+		"copy-webpack-plugin": "^4.5.1",
+		"css-loader": "^0.28.10",
+		"flow-bin": "^0.67.1",
 		"html-loader": "^0.5.5",
-		"html-webpack-plugin": "^2.30.1",
-		"lodash": "^4.17.5",
-		"material-icons-react": "^1.0.0",
-		"material-ui": "^1.0.0-beta.34",
-		"material-ui-icons": "^1.0.0-beta.17",
+		"html-webpack-plugin": "^3.0.6",
 		"node-sass": "^4.7.2",
-		"normalize.css": "^8.0.0",
-		"postcss-loader": "^2.1.1",
-		"prop-types": "^15.6.0",
+		"prop-types": "^15.6.1",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
-		"react-firebase-file-uploader": "^2.4.1",
 		"react-redux": "^5.0.7",
-		"react-router-dom": "^4.2.2",
 		"redux": "^3.7.2",
-		"redux-form": "^7.2.3",
-		"redux-thunk": "^2.2.0",
-		"sass-loader": "^6.0.6",
-		"style-loader": "^0.20.2",
-		"webpack": "^3.11.0",
-		"webpack-dev-server": "^2.11.1"
+		"redux-saga": "^0.16.0",
+		"sass-loader": "^6.0.7",
+		"style-loader": "^0.20.3",
+		"webpack": "^4.1.1",
+		"webpack-cli": "^2.0.12",
+		"webpack-dev-server": "^3.1.1"
 	},
 	"scripts": {
-		"start": "webpack-dashboard webpack-dev-server --open --hot --quiet",
-		"build": "webpack"
+		"start": "webpack-dev-server --mode development --open --hot",
+		"build": "webpack --mode production"
 	},
-	"devDependencies": {
-		"autoprefixer": "^8.1.0",
-		"cssnano": "^3.10.0",
-		"friendly-errors-webpack-plugin": "^1.6.1",
-		"postcss-cssnext": "^3.1.0",
-		"postcss-import": "^11.1.0",
-		"sugarss": "^1.0.1",
-		"webpack-dashboard": "^1.1.1"
+	"dependencies": {
+		"redux-form": "^7.3.0"
 	}
 }

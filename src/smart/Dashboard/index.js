@@ -5,7 +5,8 @@ import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
 import history from "../../history";
 import { connect } from "react-redux";
-import _ from "lodash"
+import _ from "lodash";
+import Spinner from "../../dumb/Spinner";
 
 class Dashboard extends Component {
 	state = {
@@ -25,12 +26,14 @@ class Dashboard extends Component {
 		if (stories) {
 			Object.keys(stories).map(element => {
 				if (targetElement === element) {
-          let imgUrl = stories[element].image ? stories[element].image : "img/no_image.png";
-          history.push({
+					let imgUrl = stories[element].image
+						? stories[element].image
+						: "img/no_image.png";
+					history.push({
 						pathname: "/story",
 						state: {
 							title: stories[element].title,
-              image: imgUrl,
+							image: imgUrl,
 							labels: stories[element].labels,
 							text: stories[element].text
 						}
@@ -43,20 +46,21 @@ class Dashboard extends Component {
 	render() {
 		const { addNewOpen } = this.state;
 		const { stories } = this.props;
-		const storiesStatus = (!(_.isEmpty(stories)));
-    console.log('---', storiesStatus);
+		const storiesStatus = !_.isEmpty(stories);
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
 		let elements = storiesStatus ? (
 			Object.keys(stories).map(key => {
-				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
+				let imgUrl = stories[key].image
+					? stories[key].image
+					: "img/no_image.png";
 				return (
 					<a
 						key={key}
 						href="/"
 						onClick={this.clickHandle}
 						data-id={key}
+						style={{ backgroundImage: `url(${imgUrl})` }}
 						className="stories__element">
-						<img className="stories__element-image" src={imgUrl} alt="image" />
 						<div className="overlay" />
 						<h2 className="stories__element-title">{stories[key].title}</h2>
 						<div className="stories__element-labels">{stories[key].labels}</div>
@@ -64,10 +68,9 @@ class Dashboard extends Component {
 				);
 			})
 		) : (
-			<div className="stories__element loading">
-        Loading...
-        {/*<MaterialIcon icon="loop" size={48} color="#000" />*/}
-      </div>
+			<div className="stories__element">
+				<Spinner />
+			</div>
 		);
 		const content = stories ? (
 			<div className="stories">
