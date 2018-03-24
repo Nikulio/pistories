@@ -4,7 +4,7 @@
 
 ### Demo
 
-![demo](https://imgur.com/RBZSuLf.gif)
+<img src="./demo.gif">
 
 #### You can not try it now
 
