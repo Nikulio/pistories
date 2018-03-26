@@ -5,7 +5,7 @@ export function storiesReducer(state={}, action) {
     case actions.CREATE_STORY:
       return state;
     case actions.FETCH_STORIES:
-      return {...state, ...action.payload};
+      return action.payload
     default:
       return state
   }

@@ -15,6 +15,10 @@
     transition: 2s all;
     a {
       display: block;
+      i {
+        color: #fff;
+        font-size: 36px;
+      }
     }
     &:hover {
       transform: rotate(720deg) translateZ(0);
