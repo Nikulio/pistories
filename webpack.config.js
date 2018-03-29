@@ -12,7 +12,10 @@ module.exports = {
 				}
 			},
 			{
-				test: /(\.css$)/, include: /node_modules/, loaders: ['style-loader', 'css-loader']},
+				test: /(\.css$)/,
+				include: /node_modules/,
+				loaders: ["style-loader", "css-loader"]
+			},
 			{
 				test: /\.scss$/,
 				exclude: /node_modules/,
@@ -34,7 +37,7 @@ module.exports = {
 				use: [
 					{
 						loader: "html-loader",
-						options: {minimize: true}
+						options: { minimize: true }
 					}
 				]
 			}
@@ -47,8 +50,8 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin(
 			[
-				{from: "public/favicon.ico", to: "./"},
-				{from: "public/img/", to: "./img"}
+				{ from: "public/favicon.ico", to: "./" },
+				{ from: "public/img/", to: "./img" }
 			],
 			{}
 		)
