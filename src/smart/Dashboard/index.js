@@ -1,27 +1,27 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import NewStory from "../NewStory";
 import "./index.scss";
-import {loadImage} from "../../ac";
+import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
 import history from "../../history";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import _ from "lodash";
 import Spinner from "../../dumb/Spinner";
 
 class Dashboard extends Component {
 	state = {
-		addNewOpen: false,
+		addNewOpen: false
 	};
-	
+
 	handleCreateNew = () => {
 		this.setState({
 			addNewOpen: !this.state.addNewOpen
 		});
 	};
-	
+
 	clickHandle = e => {
 		e.preventDefault();
-		const {stories} = this.props;
+		const { stories } = this.props;
 		let targetElement = e.currentTarget.dataset.id;
 		if (stories) {
 			Object.keys(stories).map(element => {
@@ -42,10 +42,10 @@ class Dashboard extends Component {
 			});
 		}
 	};
-	
+
 	render() {
-		const {addNewOpen} = this.state;
-		const {stories} = this.props;
+		const { addNewOpen } = this.state;
+		const { stories } = this.props;
 		const storiesStatus = !_.isEmpty(stories);
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
 		let elements = storiesStatus ? (
@@ -59,47 +59,53 @@ class Dashboard extends Component {
 						href="/"
 						onClick={this.clickHandle}
 						data-id={key}
-						style={{backgroundImage: `url(${imgUrl})`}}
+						style={{ backgroundImage: `url(${imgUrl})` }}
 						className="stories__element">
-						<div className="overlay"/>
+						<div className="overlay" />
 						<h2 className="stories__element-title">{stories[key].title}</h2>
 						<div className="stories__element-labels">{stories[key].labels}</div>
 					</a>
 				);
 			})
 		) : (
-			<div className="stories__element">
-				<Spinner/>
+			<div className="stories__element loading">
+				<Spinner />
 			</div>
 		);
 		const content = stories ? (
 			<div className="stories">
-				<div
-					className="create-new stories__element"
-					onClick={this.handleCreateNew}>
-					<h2 className="create-new__title">
-						<MaterialIcon icon="add" size={48} color="#000"/>
-						Add new
-					</h2>
-				</div>
+				{/*<div*/}
+					{/*className="create-new stories__element"*/}
+					{/*onClick={this.handleCreateNew}>*/}
+					{/*<h2 className="create-new__title">*/}
+						{/*<MaterialIcon icon="add" size={48} color="#000" />*/}
+						{/*Add new*/}
+					{/*</h2>*/}
+				{/*</div>*/}
 				{elements}
 			</div>
 		) : (
 			<div>
 				<div className="create-new" onClick={this.handleCreateNew}>
-					<MaterialIcon icon="alarm_add" color="#68edc6" size={100}/>
+					<MaterialIcon icon="add" color="#68edc6" size={100} />
 					<h2 className="create-new__title">Add new</h2>
 				</div>
 			</div>
 		);
 		return (
 			<div className={dashClass}>
-				<NewStory handleOpen={this.handleCreateNew} isOpen={addNewOpen}/>
+				<NewStory handleOpen={this.handleCreateNew} isOpen={addNewOpen} />
+				<div
+					onClick={this.handleCreateNew}
+					className={storiesStatus ? "create-new not-empty visible":"create-new not-empty"}>
+					<MaterialIcon icon="add" color="#000" />
+					create new
+				</div>
 				{content}
 			</div>
 		);
 	}
 }
 
-const mapDispatchToProps = {loadImage};
+const mapDispatchToProps = { loadImage };
 export default connect(null, mapDispatchToProps)(Dashboard);

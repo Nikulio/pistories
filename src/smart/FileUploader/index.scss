@@ -1,0 +1,33 @@
+@import "../../scss/colors";
+.input-wrap.dropzone-wrap {
+  flex-wrap: wrap;
+}
+.dropzone {
+  width: 100%;
+  div {
+    border-color: $dark !important;
+    transition: .3s all;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      transition: .3s all;
+    }
+    &:hover {
+      cursor: pointer;
+      border-color: $medium_aqua !important;
+      p {
+        color: $medium_aqua;
+      }
+    }
+  }
+}
+
+.image-preview {
+  width: 100%;
+  img {
+    display: block;
+    width: 100%;
+  }
+}

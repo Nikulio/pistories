@@ -5,7 +5,7 @@ export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_STORIES = "FETCH_STORIES";
 export const IMAGE_LOADED = "IMAGE_LOADED";
 export const NEW_NOTE_SUCCESS = "NEW_NOTE_SUCCESS";
-// export const FETCH_IMAGES = "FETCH_IMAGES";
+
 
 export const loadImage = title => async dispatch => {
 	const storage = await fire.storage().ref("img");
@@ -22,11 +22,15 @@ export const loadImage = title => async dispatch => {
 		.catch(error => console.log("log from ac", error));
 };
 
+
 export const createStory = data => async dispatch => {
-	const story = await fire
-		.database()
-		.ref("stories")
-		.push(data);
+	const filename = `img/${data.img.name}`;
+	const storageRef = fire.storage().ref();
+	const imgRef = storageRef.child(filename);
+	imgRef.put(data.img.img).then(function (snapshot) {
+		data.image = snapshot.metadata.downloadURLs[0];
+		fire.database().ref("stories").push(data);
+	});
 };
 
 export const fetchStories = data => async dispatch => {
