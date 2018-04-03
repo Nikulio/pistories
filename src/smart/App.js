@@ -9,29 +9,9 @@ import { connect } from "react-redux";
 class App extends Component {
 	componentWillMount() {
 		this.props.fetchStories();
-		// this.props.fetchImages();
 	}
 	render() {
 		let { stories } = this.props;
-		const routes = stories ? (
-			Object.keys(stories).map(element => {
-				let url = stories[element].title;
-				return (
-					<Route
-						key={stories[element].title}
-						path={url}
-						render={() => (
-							<div className="app">
-								<Header />
-								<div>new</div>
-							</div>
-						)}
-					/>
-				);
-			})
-		) : (
-			<div>Loading...</div>
-		);
 		return (
 			<Switch>
 				<Route

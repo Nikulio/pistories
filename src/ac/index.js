@@ -1,10 +1,19 @@
 import fire from "../firebase";
 
-export const CREATE_STORY = "CREATE_STORY";
 export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_STORIES = "FETCH_STORIES";
 export const IMAGE_LOADED = "IMAGE_LOADED";
+
+export const CREATE_STORY = "CREATE_STORY";
 export const NEW_NOTE_SUCCESS = "NEW_NOTE_SUCCESS";
+
+export const NEW_STORY_REQUEST = "NEW_STORY_REQUEST";
+export const NEW_STORY_SUCCESS = "NEW_STORY_SUCCESS";
+export const NEW_STORY_FAILURE = "NEW_STORY_FAILURE";
+
+export const FETCH_STORIES_REQUEST = "FETCH_STORIES_REQUEST";
+export const FETCH_STORIES_SUCCESS = "FETCH_STORIES_SUCCESS";
+export const FETCH_STORIES_FAILURE = "FETCH_STORIES_FAILURE";
 
 
 export const loadImage = title => async dispatch => {
@@ -23,24 +32,17 @@ export const loadImage = title => async dispatch => {
 };
 
 
-export const createStory = data => async dispatch => {
-	const filename = `img/${data.img.name}`;
-	const storageRef = fire.storage().ref();
-	const imgRef = storageRef.child(filename);
-	imgRef.put(data.img.img).then(function (snapshot) {
-		data.image = snapshot.metadata.downloadURLs[0];
-		fire.database().ref("stories").push(data);
-	});
+export const createStory = (data) => {
+	return {
+		type: NEW_STORY_REQUEST,
+		payload: data
+	}
 };
 
-export const fetchStories = data => async dispatch => {
-	const stories = await fire
-		.database()
-		.ref("stories")
-		.on("value", snap => {
-			dispatch({
-				type: FETCH_STORIES,
-				payload: snap.val()
-			});
-		});
+
+export const fetchStories = () => {
+	return {
+		type: FETCH_STORIES_REQUEST
+	}
 };
+
