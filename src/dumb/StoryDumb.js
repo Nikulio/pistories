@@ -3,8 +3,10 @@ import React from "react";
 const StoryDumb = ({ image, title, labels, text }) => {
 	return (
 		<div className="story-full">
-			<div className="story-full__image">
-				<img src={image} alt="image" />
+			<div
+				className="story-full__image"
+				style={{ backgroundImage: `url(${image})` }}>
+				{/* <img s alt="image" /> */}
 			</div>
 			<div className="story-full__content">
 				<h1 className="story-full__title">{title}</h1>

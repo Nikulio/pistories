@@ -14,7 +14,8 @@ import { rootSaga } from "./sagas";
 
 import "./scss/index.scss";
 import "./scss/colors.scss";
-import "normalize.css/normalize.css";
+import "./scss/reset.scss";
+import "./scss/fonts.scss";
 
 const sagaMiddleware = createSagaMiddleware();
 const reduxDevTools =

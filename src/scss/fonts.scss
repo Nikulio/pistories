@@ -1,0 +1,103 @@
+html,
+.root {
+	font-size: 16px;
+	font-family: Roboto, sans-serif;
+	line-height: 22px;
+}
+
+body,
+.article {
+	font-size: 16px;
+	line-height: 22px;
+	margin: auto;
+}
+
+h1,
+.h1 {
+	font-size: 68px;
+	line-height: 88px;
+	margin-top: 22px;
+	margin-bottom: 44px;
+}
+
+h2,
+.h2 {
+	font-size: 42px;
+	line-height: 44px;
+	margin-top: 22px;
+	margin-bottom: 22px;
+}
+
+h3,
+.h3 {
+	font-size: 26px;
+	line-height: 44px;
+	margin-top: 22px;
+	margin-bottom: 0px;
+}
+
+h4,
+.h4 {
+	font-size: 16px;
+	line-height: 22px;
+	margin-top: 22px;
+	margin-bottom: 0px;
+}
+
+h5,
+.h5 {
+	font-size: 16px;
+	line-height: 22px;
+	margin-top: 22px;
+	margin-bottom: 0px;
+}
+
+p,
+ul,
+ol,
+pre,
+table,
+blockquote {
+	margin-top: 0px;
+	margin-bottom: 22px;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* Let's make sure all's aligned */
+hr,
+.hr {
+	border: 1px solid;
+	margin: -1px 0;
+}
+
+a,
+b,
+i,
+strong,
+em,
+small,
+code {
+	line-height: 0;
+}
+
+sub,
+sup {
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}

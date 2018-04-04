@@ -49,7 +49,18 @@ class Dashboard extends Component {
 		const { addNewOpen } = this.state;
 		const { stories } = this.props;
 		const storiesStatus = !_.isEmpty(stories);
+		const newStoryActive = this.state.addNewOpen;
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
+		console.log(storiesStatus);
+		let newStoryClass = "create-new not-empty";
+		if (storiesStatus) {
+			newStoryClass += " visible";
+		}
+		if (newStoryActive) {
+			newStoryClass += " active";
+		}
+		const newStoryActiveClass = newStoryActive ? "active" : "";
+		console.log(this.state.addNewOpen);
 		let elements = storiesStatus ? (
 			Object.keys(stories).map(key => {
 				let imgUrl = stories[key].image
@@ -87,13 +98,7 @@ class Dashboard extends Component {
 		return (
 			<div className={dashClass}>
 				<NewStory handleOpen={this.handleCreateNew} isOpen={addNewOpen} />
-				<div
-					onClick={this.handleCreateNew}
-					className={
-						storiesStatus
-							? "create-new not-empty visible"
-							: "create-new not-empty"
-					}>
+				<div onClick={this.handleCreateNew} className={newStoryClass}>
 					<MaterialIcon icon="add" color="#000" />
 					create new
 				</div>
