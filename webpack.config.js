@@ -2,6 +2,12 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
+	output: {
+		publicPath: "/"
+	},
+	devServer: {
+		historyApiFallback: true
+	},
 	module: {
 		rules: [
 			{

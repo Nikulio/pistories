@@ -5,7 +5,7 @@ import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
 import history from "../../history";
 import { connect } from "react-redux";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import _ from "lodash";
 import Spinner from "../../dumb/Spinner";
@@ -52,7 +52,9 @@ class Dashboard extends Component {
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
 		let elements = storiesStatus ? (
 			Object.keys(stories).map(key => {
-				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
+				let imgUrl = stories[key].image
+					? stories[key].image
+					: "img/no_image.png";
 				return (
 					<Link
 						key={key}
@@ -73,17 +75,7 @@ class Dashboard extends Component {
 			</div>
 		);
 		const content = stories ? (
-			<div className="stories">
-				{/*<div*/}
-					{/*className="create-new stories__element"*/}
-					{/*onClick={this.handleCreateNew}>*/}
-					{/*<h2 className="create-new__title">*/}
-						{/*<MaterialIcon icon="add" size={48} color="#000" />*/}
-						{/*Add new*/}
-					{/*</h2>*/}
-				{/*</div>*/}
-				{elements}
-			</div>
+			<div className="stories">{elements}</div>
 		) : (
 			<div>
 				<div className="create-new" onClick={this.handleCreateNew}>
@@ -97,7 +89,11 @@ class Dashboard extends Component {
 				<NewStory handleOpen={this.handleCreateNew} isOpen={addNewOpen} />
 				<div
 					onClick={this.handleCreateNew}
-					className={storiesStatus ? "create-new not-empty visible":"create-new not-empty"}>
+					className={
+						storiesStatus
+							? "create-new not-empty visible"
+							: "create-new not-empty"
+					}>
 					<MaterialIcon icon="add" color="#000" />
 					create new
 				</div>

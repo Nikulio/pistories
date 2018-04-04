@@ -24,7 +24,7 @@ class App extends Component {
 						</div>
 					)}
 				/>
-				<Route path="/story" component={Story} />
+				<Route exact path="/story" component={Story} />
 			</Switch>
 		);
 	}

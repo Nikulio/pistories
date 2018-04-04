@@ -34,7 +34,8 @@
 	},
 	"scripts": {
 		"start": "webpack-dev-server --mode development --open --hot",
-		"build": "webpack --mode production"
+		"build": "webpack --mode production",
+		"test": "next"
 	},
 	"dependencies": {
 		"firebase": "^4.12.0",
@@ -42,6 +43,7 @@
 		"material-icons-react": "^1.0.0",
 		"material-ui": "^0.20.0",
 		"material-ui-icons": "^1.0.0-beta.36",
+		"next": "^5.1.0",
 		"normalize.css": "^8.0.0",
 		"react-firebase-file-uploader": "^2.4.1",
 		"react-router-dom": "^4.2.2",
