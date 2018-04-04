@@ -6,12 +6,9 @@ import {
 	take,
 	fork
 } from "redux-saga/effects";
-import eventChannel from "redux-saga"
 
 import * as actions from "./ac";
-import axios from "axios";
 import rsf from "./firebase";
-
 
 function* fetchStoriesWorker() {
 	const data = yield call(rsf.database.read, "stories");
@@ -27,23 +24,6 @@ function* newStoryWorker(data) {
 	yield call(fetchStoriesWorker);
 	
 }
-
-// const filename = `img/${data.img.name}`;
-// const storageRef = fire.storage().ref();
-// const imgRef = storageRef.child(filename);
-// const response = yield call(function () {
-// 	console.log("--- second");
-// 	return new Promise(function (resolve, reject) {
-// 		console.log("--- third");
-// 		imgRef.put(data.img.img).then(function (snap) {
-// 			console.log("--- forth");
-// 			data.image = snap.metadata.downloadURLs[0];
-// 			const res = fire.database().ref("stories").push(data);
-// 			resolve(res)
-// 		});
-// 	})
-// });
-// yield put({type: actions.NEW_STORY_SUCCESS, payload: response});
 
 export function* rootSaga() {
 	yield [

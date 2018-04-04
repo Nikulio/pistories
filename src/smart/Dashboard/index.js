@@ -5,6 +5,8 @@ import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
 import history from "../../history";
 import { connect } from "react-redux";
+import {Link} from "react-router-dom"
+
 import _ from "lodash";
 import Spinner from "../../dumb/Spinner";
 
@@ -52,9 +54,9 @@ class Dashboard extends Component {
 			Object.keys(stories).map(key => {
 				let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
 				return (
-					<a
+					<Link
 						key={key}
-						href="/"
+						to="/"
 						onClick={this.clickHandle}
 						data-id={key}
 						style={{ backgroundImage: `url(${imgUrl})` }}
@@ -62,7 +64,7 @@ class Dashboard extends Component {
 						<div className="overlay" />
 						<h2 className="stories__element-title">{stories[key].title}</h2>
 						<div className="stories__element-labels">{stories[key].labels}</div>
-					</a>
+					</Link>
 				);
 			})
 		) : (

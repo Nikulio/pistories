@@ -7,7 +7,7 @@
 /coverage
 
 # production
-firebase.js
+# firebase.js
 # production
 dist
 .sass-caches

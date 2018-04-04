@@ -2,7 +2,7 @@ import "regenerator-runtime/runtime";
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./smart/App"
-import {Router} from "react-router-dom"
+import {Router, HashRouter} from "react-router-dom"
 import history from "./history"
 import reducers from "./reducers"
 import {Provider} from "react-redux"
@@ -29,9 +29,12 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router history={history}>
-			<App/>
-		</Router>
+		{/*<Router history={history}>*/}
+			<HashRouter>
+				<App/>
+			</HashRouter>
+		{/*</Router>*/}
+	
 	</Provider>,
 	document.getElementById("root")
 );
