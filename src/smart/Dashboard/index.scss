@@ -15,8 +15,8 @@
 
 .create-new:not(.not-empty) {
   margin: 20px 0;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
@@ -26,12 +26,25 @@
   transition: 0.3s all;
   border-radius: 10px;
   box-shadow: 0 0 19px 0 $medium_aqua;
+  .create-new__title {
+    text-align: center;
+  }
+  .material-icons {
+    display: block;
+    transition: .3s all;
+  }
   * {
     color: $medium_aqua;
   }
   &:not(.stories__element):hover {
     cursor: pointer;
     box-shadow: 0 0 50px 5px $medium_aqua;
+  }
+  &.active {
+    box-shadow: 0 0 50px 5px $medium_aqua;
+    .material-icons {
+      transform: rotate(45deg);
+    }
   }
 }
 

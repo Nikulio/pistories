@@ -13,7 +13,7 @@ import Story from "./Story/index";
 class App extends Component {
 	
 	state = {
-		user : this.props.cookies.get('userID') || "guest"
+		user: this.props.cookies.get('userID') || "guest"
 	};
 	
 	componentWillMount() {
@@ -21,12 +21,15 @@ class App extends Component {
 		this.props.fetchStories(this.state.user);
 		this.props.initUser();
 	}
-
+	
 	initCookie() {
 		const {cookies} = this.props;
 		if (!(cookies.get('userID'))) {
 			const id = "_" + Math.random().toString(36).substr(2, 9);
-			cookies.set('userID', id, {path: '/'});
+			let tomorrow = new Date();
+			let today = new Date();
+			tomorrow.setDate(today.getDate() + 999);
+			cookies.set('userID', id, {path: '/', expires: tomorrow});
 			this.props.initUser(cookies.get('userID'))
 		}
 		else {

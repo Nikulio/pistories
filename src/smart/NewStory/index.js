@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./index.scss";
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import {createStory} from "../../ac";
 import {connect} from "react-redux";
 import ImageUploader from "../ImageUploader";
@@ -16,6 +16,7 @@ class NewStoryForm extends Component {
 	fileUploaderHandle = (obj) => {
 		this.props.onImageFetch(obj)
 	}
+	
 	
 	render() {
 		const {handleSubmit, pristine, reset, submitting} = this.props;
@@ -66,7 +67,7 @@ class NewStoryForm extends Component {
 
 class NewStory extends Component {
 	state = {
-		file : {},
+		file : {}
 	};
 	onImageFetching = obj => {
 		this.setState({
@@ -82,6 +83,9 @@ class NewStory extends Component {
 		data.user = user;
 		this.props.createStory(data);
 		this.props.handleOpen();
+		this.setState({
+			submit: true
+		})
 	};
 	
 	render() {
@@ -99,7 +103,13 @@ class NewStory extends Component {
 const mapDispatchToProps = {
 	createStory
 };
-NewStoryForm = reduxForm({form: "newStoryForm"})(NewStoryForm);
+
+const afterSubmit = (result, dispatch) =>
+	dispatch(reset('newStoryForm'));
+NewStoryForm = reduxForm({
+	form: "newStoryForm",
+	onSubmitSuccess: afterSubmit,
+})(NewStoryForm);
 
 export default connect(state => ({user: state.user}), mapDispatchToProps)(
 	NewStory

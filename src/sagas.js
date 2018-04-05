@@ -6,6 +6,8 @@ import {
 	take,
 	fork
 } from "redux-saga/effects";
+import _ from "lodash"
+
 
 import * as actions from "./ac";
 import rsf from "./firebase";
@@ -27,13 +29,18 @@ function* fetchStoriesWorker(info) {
 
 function* newStoryWorker(data) {
 	const {payload} = data;
-	const task = yield call(
-		rsf.storage.uploadFile,
-		`img/${payload.user}/${payload.img.name}`,
-		payload.img.img
-	);
-	payload.image = yield task.metadata.downloadURLs[0];
-	const key = yield call(rsf.database.create, `stories/${payload.user}`, payload);
+	if (!(payload.img.img === undefined)) {
+		const task = yield call(
+			rsf.storage.uploadFile,
+			`img/${payload.user}/${payload.img.name}`,
+			payload.img.img
+		);
+		payload.image = yield task.metadata.downloadURLs[0];
+	} else {
+		payload.img.name = null;
+		payload.img.img = null;
+	}
+	const key = yield call(rsf.database.create, `stories/${payload.user}/`, payload);
 	yield put({type: actions.NEW_STORY_SUCCESS});
 	yield call(fetchStoriesWorker, ...[payload.user]);
 }

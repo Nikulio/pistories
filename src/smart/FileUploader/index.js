@@ -9,6 +9,7 @@ class FileUploader extends Component {
 		preview: "",
 		dropzoneShow: true
 	};
+	
 	onImageDrop = files => {
 		let {name} = this.props;
 		this.setState({

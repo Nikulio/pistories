@@ -50,13 +50,17 @@ class Dashboard extends Component {
 		const { stories } = this.props;
 		const storiesStatus = !_.isEmpty(stories);
 		const newStoryActive = this.state.addNewOpen;
+		
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
 		let newStoryClass = "create-new not-empty";
+		let newStoryBlankClass = "create-new";
+		
 		if (storiesStatus) {
 			newStoryClass += " visible";
 		}
 		if (newStoryActive) {
 			newStoryClass += " active";
+			newStoryBlankClass += " active";
 		}
 		let elements = storiesStatus ? (
 			Object.keys(stories).map(key => {
@@ -86,9 +90,9 @@ class Dashboard extends Component {
 			<div className="stories">{elements}</div>
 		) : (
 			<div>
-				<div className="create-new" onClick={this.handleCreateNew}>
+				<div className={newStoryBlankClass} onClick={this.handleCreateNew}>
 					<MaterialIcon icon="add" color="#68edc6" size={100} />
-					<h2 className="create-new__title">Add new</h2>
+					<h2 className="create-new__title">Add your first!</h2>
 				</div>
 			</div>
 		);
