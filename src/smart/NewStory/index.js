@@ -45,13 +45,8 @@ class NewStoryForm extends Component {
 					label="Type your memo text here"
 					name="text"
 				/>
+				
 				{this.state.title && (
-					// <ImageUploader
-					// 	title={this.state.title
-					// 		.toLowerCase()
-					// 		.split(" ")
-					// 		.join("_")}
-					// />
 					<FileUploader
 						fileUploaderHandle={this.fileUploaderHandle}
 						name={this.state.title
@@ -73,23 +68,25 @@ class NewStoryForm extends Component {
 class NewStory extends Component {
 	state = {
 		file : {},
-	}
+	};
 	onImageFetching = obj => {
 		this.setState({
 			file: obj
 		})
 	};
 	submit = data => {
+		const {user} = this.props;
 		data.img = {
 			name : this.state.file.name,
 			img : this.state.file.img,
 		};
+		data.user = user;
 		this.props.createStory(data);
 		this.props.handleOpen();
 	};
 	
 	render() {
-		let {isOpen, image} = this.props;
+		let {isOpen} = this.props;
 		const isOpenClass = isOpen ? "new-note unfolded" : "new-note folded";
 		return (
 			<div className={isOpenClass}>
@@ -105,6 +102,6 @@ const mapDispatchToProps = {
 };
 NewStoryForm = reduxForm({form: "newStoryForm"})(NewStoryForm);
 
-export default connect(state => ({image: state.image}), mapDispatchToProps)(
+export default connect(state => ({user: state.user}), mapDispatchToProps)(
 	NewStory
 );

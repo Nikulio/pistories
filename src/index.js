@@ -7,6 +7,7 @@ import history from "./history";
 import reducers from "./reducers";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
+import { CookiesProvider } from "react-cookie";
 
 import ReduxThunk from "redux-thunk";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -29,11 +30,12 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Router history={history}>
-			<App />
-		</Router>
-		{/*</Router>*/}
-	</Provider>,
+	<CookiesProvider>
+		<Provider store={store}>
+			<Router history={history}>
+				<App />
+			</Router>
+		</Provider>
+	</CookiesProvider>,
 	document.getElementById("root")
 );

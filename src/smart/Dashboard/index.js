@@ -51,7 +51,6 @@ class Dashboard extends Component {
 		const storiesStatus = !_.isEmpty(stories);
 		const newStoryActive = this.state.addNewOpen;
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
-		console.log(storiesStatus);
 		let newStoryClass = "create-new not-empty";
 		if (storiesStatus) {
 			newStoryClass += " visible";
@@ -59,8 +58,6 @@ class Dashboard extends Component {
 		if (newStoryActive) {
 			newStoryClass += " active";
 		}
-		const newStoryActiveClass = newStoryActive ? "active" : "";
-		console.log(this.state.addNewOpen);
 		let elements = storiesStatus ? (
 			Object.keys(stories).map(key => {
 				let imgUrl = stories[key].image

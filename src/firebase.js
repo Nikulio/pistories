@@ -12,5 +12,8 @@ const config = {
 };
 
 const fire = firebase.initializeApp(config);
+
+const auth = firebase.auth();
+export { auth };
 const rsf = new ReduxSagaFirebase(fire);
 export default rsf;
