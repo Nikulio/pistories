@@ -1,6 +1,8 @@
 @import "../../scss/colors";
 .input-wrap.dropzone-wrap {
   flex-wrap: wrap;
+  height: 200px;
+  overflow: hidden;
 }
 .dropzone {
   width: 100%;
@@ -13,6 +15,12 @@
     justify-content: center;
     p {
       transition: .3s all;
+    }
+    &.active {
+      border-color: $medium_aqua !important;
+      p {
+        color: $medium_aqua;
+      }
     }
     &:hover {
       cursor: pointer;

@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import Dropzone from "react-dropzone";
-import request from "superagent";
-import { uploadFile } from "../../ac";
+import {uploadFile} from "../../ac";
 import "./index.scss";
 
 class FileUploader extends Component {
 	state = {
-		preview: ""
+		preview: "",
+		dropzoneShow: true
 	};
 	onImageDrop = files => {
-		let { name } = this.props;
+		let {name} = this.props;
 		this.setState({
 			preview: files[0].preview
 		});
@@ -20,17 +20,21 @@ class FileUploader extends Component {
 		};
 		this.props.fileUploaderHandle(obj);
 	};
+	
 	render() {
 		return (
 			<div className="input-wrap dropzone-wrap">
+				{this.state.dropzoneShow &&
 				<div className="dropzone">
-					<Dropzone multiple={false} accept="image/*" onDrop={this.onImageDrop}>
+					<Dropzone multiple={false} onDropAccepted={() => this.setState({dropzoneShow: false})}
+					          accept="image/*" onDrop={this.onImageDrop}>
 						<p>Drop an image or click to select a file to upload.</p>
 					</Dropzone>
 				</div>
+				}
 				{this.state.preview && (
 					<div className="image-preview">
-						<img src={this.state.preview} alt="" />
+						<img src={this.state.preview} alt=""/>
 					</div>
 				)}
 			</div>

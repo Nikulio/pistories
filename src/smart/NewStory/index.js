@@ -45,7 +45,6 @@ class NewStoryForm extends Component {
 					label="Type your memo text here"
 					name="text"
 				/>
-				
 				{this.state.title && (
 					<FileUploader
 						fileUploaderHandle={this.fileUploaderHandle}
