@@ -22,13 +22,16 @@ function* initUserWorker(data) {
 }
 
 function* fetchStoriesWorker(info) {
+	yield put({type: actions.LOADER_ACTIVE});
 	const user = info.payload || info;
 	const data = yield call(rsf.database.read, `stories/${user}`);
 	yield put({type: actions.FETCH_STORIES_SUCCESS, payload: data});
+	yield put({type: actions.LOADER_DISABLE});
 }
 
 function* newStoryWorker(data) {
 	const {payload} = data;
+	yield put({type: actions.LOADER_ACTIVE});
 	if (!(payload.img.img === undefined)) {
 		const task = yield call(
 			rsf.storage.uploadFile,
@@ -43,6 +46,7 @@ function* newStoryWorker(data) {
 	const key = yield call(rsf.database.create, `stories/${payload.user}/`, payload);
 	yield put({type: actions.NEW_STORY_SUCCESS});
 	yield call(fetchStoriesWorker, ...[payload.user]);
+	yield put({type: actions.LOADER_DISABLE});
 }
 
 export function* rootSaga() {

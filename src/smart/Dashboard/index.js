@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NewStory from "../NewStory";
+import Loader from "../Loader";
 import "./index.scss";
 import { loadImage } from "../../ac";
 import MaterialIcon from "material-icons-react";
@@ -47,14 +48,14 @@ class Dashboard extends Component {
 
 	render() {
 		const { addNewOpen } = this.state;
-		const { stories } = this.props;
+		const { stories, loader } = this.props;
 		const storiesStatus = !_.isEmpty(stories);
 		const newStoryActive = this.state.addNewOpen;
-		
+
 		const dashClass = storiesStatus ? "dashboard not-empty" : "dashboard empty";
 		let newStoryClass = "create-new not-empty";
 		let newStoryBlankClass = "create-new";
-		
+
 		if (storiesStatus) {
 			newStoryClass += " visible";
 		}
@@ -62,30 +63,46 @@ class Dashboard extends Component {
 			newStoryClass += " active";
 			newStoryBlankClass += " active";
 		}
-		let elements = storiesStatus ? (
-			Object.keys(stories).map(key => {
-				let imgUrl = stories[key].image
-					? stories[key].image
-					: "img/no_image.png";
-				return (
-					<Link
-						key={key}
-						to="/"
-						onClick={this.clickHandle}
-						data-id={key}
-						style={{ backgroundImage: `url(${imgUrl})` }}
-						className="stories__element">
-						<div className="overlay" />
-						<h2 className="stories__element-title">{stories[key].title}</h2>
-						<div className="stories__element-labels">{stories[key].labels}</div>
-					</Link>
-				);
-			})
-		) : (
-			<div className="stories__element loading">
-				<Spinner />
-			</div>
-		);
+		// let elements = storiesStatus ? (
+		// 	Object.keys(stories).map(key => {
+		// 		let imgUrl = stories[key].image
+		// 			? stories[key].image
+		// 			: "img/no_image.png";
+		// 		return (
+		// 			<Link
+		// 				key={key}
+		// 				to="/"
+		// 				onClick={this.clickHandle}
+		// 				data-id={key}
+		// 				style={{ backgroundImage: `url(${imgUrl})` }}
+		// 				className="stories__element">
+		// 				<div className="overlay" />
+		// 				<h2 className="stories__element-title">{stories[key].title}</h2>
+		// 				<div className="stories__element-labels">{stories[key].labels}</div>
+		// 			</Link>
+		// 		);
+		// 	})
+		// ) : (
+		// 	<div className="stories__element loading">
+		// 		<Spinner />
+		// 	</div>
+		// );
+		let elements = Object.keys(stories).map(key => {
+			let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
+			return (
+				<Link
+					key={key}
+					to="/"
+					onClick={this.clickHandle}
+					data-id={key}
+					style={{ backgroundImage: `url(${imgUrl})` }}
+					className="stories__element">
+					<div className="overlay" />
+					<h2 className="stories__element-title">{stories[key].title}</h2>
+					<div className="stories__element-labels">{stories[key].labels}</div>
+				</Link>
+			);
+		});
 		const content = stories ? (
 			<div className="stories">{elements}</div>
 		) : (
@@ -103,6 +120,7 @@ class Dashboard extends Component {
 					<MaterialIcon icon="add" color="#000" />
 					create new
 				</div>
+				<Loader isOpen={loader} />
 				{content}
 			</div>
 		);
@@ -110,4 +128,9 @@ class Dashboard extends Component {
 }
 
 const mapDispatchToProps = { loadImage };
-export default connect(null, mapDispatchToProps)(Dashboard);
+const mapStateToProps = state => {
+	return {
+		loader: state.loader
+	}; 
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

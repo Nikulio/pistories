@@ -9,7 +9,13 @@ class FileUploader extends Component {
 		preview: "",
 		dropzoneShow: true
 	};
-	
+
+//TODO: log user id to the actual
+
+	componentWillUnmount() {
+		console.log(123);
+	}
+
 	onImageDrop = files => {
 		let {name} = this.props;
 		this.setState({
@@ -21,7 +27,9 @@ class FileUploader extends Component {
 		};
 		this.props.fileUploaderHandle(obj);
 	};
-	
+
+
+
 	render() {
 		return (
 			<div className="input-wrap dropzone-wrap">

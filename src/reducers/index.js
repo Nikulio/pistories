@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 import { storiesReducer } from "./storiesReducer";
 import { userReducer } from "./userReducer";
+import { loaderReducer } from "./loaderReducer";
 import * as actions from "../ac";
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
 		}
 	}),
 	user: userReducer,
-	stories: storiesReducer
+	stories: storiesReducer,
+	loader: loaderReducer
 });

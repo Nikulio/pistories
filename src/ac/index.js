@@ -12,6 +12,9 @@ export const INIT_USER_REQUEST = "INIT_USER_REQUEST";
 export const INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
 export const INIT_USER_FAILURE = "INIT_USER_FAILURE";
 
+export const LOADER_ACTIVE = "LOADER_ACTIVE";
+export const LOADER_DISABLE = "LOADER_DISABLE";
+
 export const initUser = (id) => {
 	return {
 		type: INIT_USER_REQUEST,

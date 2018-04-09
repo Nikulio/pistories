@@ -84,6 +84,8 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 5;
   align-items: flex-start;
   .stories__element {
     display: flex;
@@ -130,7 +132,7 @@
     &:hover {
       cursor: pointer;
       &:after {
-        opacity: 0.9;
+        opacity: 0.5;
       }
       .stories__element-title {
         opacity: 1;
