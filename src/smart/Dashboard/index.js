@@ -87,22 +87,26 @@ class Dashboard extends Component {
 		// 		<Spinner />
 		// 	</div>
 		// );
-		let elements = Object.keys(stories).map(key => {
-			let imgUrl = stories[key].image ? stories[key].image : "img/no_image.png";
-			return (
-				<Link
-					key={key}
-					to="/"
-					onClick={this.clickHandle}
-					data-id={key}
-					style={{ backgroundImage: `url(${imgUrl})` }}
-					className="stories__element">
-					<div className="overlay" />
-					<h2 className="stories__element-title">{stories[key].title}</h2>
-					<div className="stories__element-labels">{stories[key].labels}</div>
-				</Link>
-			);
-		});
+		let elements =
+			storiesStatus &&
+			Object.keys(stories).map(key => {
+				let imgUrl = stories[key].image
+					? stories[key].image
+					: "img/no_image.png";
+				return (
+					<Link
+						key={key}
+						to="/"
+						onClick={this.clickHandle}
+						data-id={key}
+						style={{ backgroundImage: `url(${imgUrl})` }}
+						className="stories__element">
+						<div className="overlay" />
+						<h2 className="stories__element-title">{stories[key].title}</h2>
+						<div className="stories__element-labels">{stories[key].labels}</div>
+					</Link>
+				);
+			});
 		const content = stories ? (
 			<div className="stories">{elements}</div>
 		) : (
@@ -131,6 +135,6 @@ const mapDispatchToProps = { loadImage };
 const mapStateToProps = state => {
 	return {
 		loader: state.loader
-	}; 
+	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
